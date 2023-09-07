@@ -5,34 +5,45 @@ import { DepositComponent } from './deposit/deposit.component';
 import { WithdrawComponent } from './withdraw/withdraw.component';
 import { DepositNotesComponent } from './deposit-notes/deposit-notes.component';
 import { DepositCoinsComponent } from './deposit-coins/deposit-coins.component';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 
 const routes: Routes = [
   {
-    path: 'balance',
-    component: BalanceComponent
+    path: '',
+    redirectTo: '/balance',
+    pathMatch: 'full',
   },
   {
-    path:'deposit', component:DepositComponent,
+    path: 'balance',
+    component: BalanceComponent,
+  },
+  {
+    path: 'deposit',
+    component: DepositComponent,
 
     children: [
       {
-        path:'notes',
-        component:DepositNotesComponent
+        path: 'notes',
+        component: DepositNotesComponent,
       },
       {
-        path:'coins',
-        component:DepositCoinsComponent
-      }
-    ]
+        path: 'coins',
+        component: DepositCoinsComponent,
+      },
+    ],
   },
   {
-    path:'withdraw',
-    component:WithdrawComponent
+    path: 'withdraw',
+    component: WithdrawComponent,
+  },
+  {
+    path: '**',
+    component:PagenotfoundComponent
   }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
